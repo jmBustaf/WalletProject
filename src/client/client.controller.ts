@@ -25,8 +25,8 @@ export class ClientController {
     }
 
     @Put()
-    async updateClient(@Res() res, @Body() clientDTO) {
-        const client = await this.clientService.updateClient(clientDTO)
+    async updateClient(@Res() res, @Body() clientDTO, @Query('id') id: string) {
+        const client = await this.clientService.updateClient(id, clientDTO)
         return res.status(HttpStatus.OK).json({message: "successful", data: client})
     }
 

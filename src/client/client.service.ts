@@ -28,9 +28,9 @@ export class ClientService {
         return await newClient.save()
     }
 
-    public async updateClient(client: ClientDTO): Promise<IClient>
+    public async updateClient(id: string, client: ClientDTO): Promise<IClient>
     {
-        const updatedClient = await this.clientModel.findByIdAndUpdate(client._id, client, {new: true})
+        const updatedClient = await this.clientModel.findByIdAndUpdate(id, client, {new: true})
         return updatedClient;
     }
 

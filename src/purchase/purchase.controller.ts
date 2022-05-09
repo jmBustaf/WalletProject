@@ -25,8 +25,8 @@ export class PurchaseController {
     }
 
     @Put()
-    async updatePurchase(@Res() res, @Body() purchaseDTO) {
-        const purchase = await this.purchaseService.updatePurchase(purchaseDTO)
+    async updatePurchase(@Res() res, @Body() purchaseDTO, @Query('id') id: string) {
+        const purchase = await this.purchaseService.updatePurchase(id, purchaseDTO)
         return res.status(HttpStatus.OK).json({message: "successful", data: purchase})
     }
 
