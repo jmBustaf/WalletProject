@@ -1,7 +1,7 @@
 import { Document } from "mongoose"
 
 export interface IPurchase extends Document {
-    id: string,
+    /* id: string, */
     name: string,
     description: string
   }

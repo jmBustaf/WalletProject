@@ -25,12 +25,12 @@ export class PurchaseService {
     public async createPurchase(purchase: PurchaseDTO): Promise<IPurchase>
     {
         const newPurchase = new this.purchaseModel(purchase);
-        return await newPurchase  .save()
+        return await newPurchase.save()
     }
 
     public async updatePurchase(purchase: PurchaseDTO): Promise<IPurchase>
     {
-        const updatedPurchase = await this.purchaseModel.findByIdAndUpdate(purchase.id, purchase, {new: true})
+        const updatedPurchase = await this.purchaseModel.findByIdAndUpdate(purchase._id, purchase, {new: true})
         return updatedPurchase;
     }
 

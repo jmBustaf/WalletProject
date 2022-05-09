@@ -14,7 +14,6 @@ export class PurchaseController {
 
     @Get('/list')
     async listPurchase(@Res() res) {
-        console.log("entro")
         const purchases = await this.purchaseService.getPurchases()
         return res.status(HttpStatus.OK).json({message: "successful", data: purchases})
     }
@@ -32,7 +31,7 @@ export class PurchaseController {
     }
 
     @Delete()
-    async DeletePurchase(@Res() res, @Query('id') id: string) {
+    async DeletePurchase(@Res() res, @Query('_id') id: string) {
         const purchase = await this.purchaseService.deletePurchase(id)
         return res.status(HttpStatus.OK).json({message: "successful", data: purchase})
     }
