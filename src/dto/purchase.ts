@@ -1,5 +1,7 @@
-export class PurchaseDTO{
+export class PurchaseDTO {
     _id: string;
-    name: string;
-    description: string;
+    clientId: string;
+    purchasePrice: number;
+    currencyId: string; //Currency
+    quantity: number;
 }

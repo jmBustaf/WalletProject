@@ -31,7 +31,7 @@ export class PurchaseController {
     }
 
     @Delete()
-    async DeletePurchase(@Res() res, @Query('_id') id: string) {
+    async DeletePurchase(@Res() res, @Query('id') id: string) {
         const purchase = await this.purchaseService.deletePurchase(id)
         return res.status(HttpStatus.OK).json({message: "successful", data: purchase})
     }

@@ -2,8 +2,10 @@ import { Schema } from "mongoose";
 
 export const purchaseSchema = new Schema({
     /* id: String, */
-    name: { type: String },
-    description: { type: String },
+    clientId: { type: String },
+    purchasePrice: { type: Number },
+    currencyId: { type: String }, //Currency
+    quantity: { type: Number },
 },
 {
   versionKey: false // You should be aware of the outcome after set to false
