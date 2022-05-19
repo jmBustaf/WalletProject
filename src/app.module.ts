@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { PurchaseModule } from './purchase/purchase.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ClientModule } from './client/client.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ MongooseModule.forRoot('mongodb+srv://Pruebas:vtEiXJEFd9NCA7HP@clusterhugoproject.j6emb.mongodb.net/WalletDB?retryWrites=true&w=majority'),
+  imports: [ ConfigModule.forRoot(), MongooseModule.forRoot(process.env.MONGODB),
              PurchaseModule, ClientModule, ],
   controllers: [AppController],
   providers: [AppService],

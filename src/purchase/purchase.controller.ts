@@ -1,5 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Res, HttpStatus, Body, Param, Query } from '@nestjs/common';
+import { ParamsPurchaseDTO } from 'src/dto/params-purchase';
 import { PurchaseService } from './purchase.service';
+import { ParamsClientDTO } from 'src/dto/params-clients';
 
 @Controller('purchase')
 export class PurchaseController {
@@ -7,7 +9,7 @@ export class PurchaseController {
     constructor(private  purchaseService: PurchaseService) {}
 
     @Get('id')
-    async getPurchase(@Res() res, @Query('id') id: string) {
+    async getPurchase(@Res() res, @Query('id') id: ParamsPurchaseDTO) {
         const purchase = await this.purchaseService.getPurchase(id)
         return res.status(HttpStatus.OK).json({message: "successful", data: purchase})
     }
@@ -25,13 +27,13 @@ export class PurchaseController {
     }
 
     @Put()
-    async updatePurchase(@Res() res, @Body() purchaseDTO, @Query('id') id: string) {
+    async updatePurchase(@Res() res, @Body() purchaseDTO, @Query('id') id: ParamsClientDTO) {
         const purchase = await this.purchaseService.updatePurchase(id, purchaseDTO)
         return res.status(HttpStatus.OK).json({message: "successful", data: purchase})
     }
 
     @Delete()
-    async DeletePurchase(@Res() res, @Query('id') id: string) {
+    async DeletePurchase(@Res() res, @Query('id') id: ParamsPurchaseDTO) {
         const purchase = await this.purchaseService.deletePurchase(id)
         return res.status(HttpStatus.OK).json({message: "successful", data: purchase})
     }

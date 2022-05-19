@@ -1,13 +1,15 @@
 import { Controller, Get, Post, Put, Delete, Res, HttpStatus, Body, Param, Query } from '@nestjs/common';
+import { ClientDTO } from 'src/dto/client';
+import { ParamsClientDTO } from 'src/dto/params-clients';
 import { ClientService } from './client.service';
 
 @Controller('client')
 export class ClientController {
 
-    constructor(private  clientService: ClientService) {}
+    constructor(private clientService: ClientService) {}
 
     @Get('id')
-    async getClient(@Res() res, @Query('id') id: string) {
+    async getClient(@Res() res, @Query('id') id: ParamsClientDTO) {
         const client = await this.clientService.getClient(id)
         return res.status(HttpStatus.OK).json({message: "successful", data: client})
     }
@@ -19,19 +21,19 @@ export class ClientController {
     }
 
     @Post()  
-    async createClient(@Res() res, @Body() clientDTO) {
+    async createClient(@Res() res, @Body() clientDTO: ClientDTO) {
         const client = await this.clientService.createClient(clientDTO)
         return res.status(HttpStatus.OK).json({message: "successful", data: client})
     }
 
     @Put()
-    async updateClient(@Res() res, @Body() clientDTO, @Query('id') id: string) {
+    async updateClient(@Res() res, @Body() clientDTO: ClientDTO, @Query('id') id: string) {
         const client = await this.clientService.updateClient(id, clientDTO)
         return res.status(HttpStatus.OK).json({message: "successful", data: client})
     }
 
     @Delete()
-    async DeleteClient(@Res() res, @Query('id') id: string) {
+    async DeleteClient(@Res() res, @Query('id') id: ParamsClientDTO) {
         const client = await this.clientService.deleteClient(id)
         return res.status(HttpStatus.OK).json({message: "successful", data: client})
     }

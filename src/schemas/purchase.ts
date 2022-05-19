@@ -1,8 +1,9 @@
 import { Schema } from "mongoose";
+import { clientSchema } from "./client"
 
 export const purchaseSchema = new Schema({
     /* id: String, */
-    clientId: { type: String },
+    clientId: { type: clientSchema },
     purchasePrice: { type: Number },
     currencyId: { type: String }, //Currency
     quantity: { type: Number },
@@ -10,19 +11,3 @@ export const purchaseSchema = new Schema({
 {
   versionKey: false // You should be aware of the outcome after set to false
 });
-
-/* import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-
-export type PurchaseDocument = Purchase & Document;
-
-@Schema()
-export class Purchase {
-  @Prop({ type: String, required: true })
-  name: string;
-
-  @Prop({ type: String, required: true })
-  description: string;
-}
-
-export const PurchaseSchema = SchemaFactory.createForClass(Purchase); */

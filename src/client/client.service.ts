@@ -3,6 +3,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { IClient } from '../interfaces/client'
 import { ClientDTO } from 'src/dto/client';
+import { ParamsClientDTO } from 'src/dto/params-clients';
 
 
 @Injectable()
@@ -10,7 +11,7 @@ export class ClientService {
 
     constructor(@InjectModel('Client') private clientModel: Model<IClient>) {}
 
-    public async getClient(id: string): Promise<IClient>
+    public async getClient(id: ParamsClientDTO): Promise<IClient>
     {
         const client = await this.clientModel.findById(id)
         return client
@@ -34,7 +35,7 @@ export class ClientService {
         return updatedClient;
     }
 
-    public async deleteClient(id: string): Promise<IClient>
+    public async deleteClient(id: ParamsClientDTO): Promise<IClient>
     {
         const deletedClient = await this.clientModel.findByIdAndDelete(id)
         return deletedClient;
